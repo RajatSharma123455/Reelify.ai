@@ -1,0 +1,11 @@
+html, body, #root {
+  height:100%;
+  width: 100%;
+  margin: 0px;
+  padding:0px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color:white;
+  background-image: linear-gradient(to left, #4A40A6, #0D1117);
+  box-sizing: border-box;
+}
+
