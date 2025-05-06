@@ -4,11 +4,14 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App.jsx';
 import ImageToVideoConverter from './components/ImageToVideoConverter.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AppLayout() {
   return (
     <>
       <Outlet />
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 }

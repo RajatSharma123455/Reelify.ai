@@ -1,68 +1,77 @@
 import express from "express";
-import dotenv from "dotenv";
 import axios from "axios";
+import dotenv from "dotenv";
 
 dotenv.config();
+
 export const ImageToVideo = express.Router();
 const API_KEY = process.env.API_KEYS;
 
 ImageToVideo.post("/image-to-video", async (req, res) => {
   const {
-    prompt,
-    image_url,
-    last_image_url,
-    duration = 5,
-    ratio = "16:9",
-    seed = 1,
-    watermark = true,
+    img_prompt,
+    model = "gen4",
+    image_as_end_frame = false,
+    flip = false,
+    motion = 5,
+    seed = 0,
+    callback_url = "",
+    time = 5
   } = req.body;
-  
+
+
+  if (!img_prompt) {
+    return res.status(400).json({ error: "Missing imageUrl" });
+  }
 
   try {
     const response = await axios.post(
-      "https://api.aimlapi.com/v2/generate/video/runway/generation",
+      "https://api.aivideoapi.com/runway/generate/image",
       {
-        model: "gen3a_turbo",
-        prompt,
-        image_url,
-        last_image_url,
-        duration,
-        ratio,
+        img_prompt,
+        model,
+        image_as_end_frame,
+        flip,
+        motion,
         seed,
-        watermark,
+        callback_url,
+        time
       },
       {
         headers: {
           Authorization: `Bearer ${API_KEY}`,
-          "content-type": "application/json",
-        },
+          "Content-Type": "application/json",
+        }
       }
     );
-    res.status(200).json(response.data);
-  } catch (error) {
-    console.error(error?.response?.data || error?.message);
-    res.status(500).json("Not able to convert image to video");
+
+    res.json(response.data);
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    res.status(500).json({ error: "Video generation failed" });
   }
 });
 
 ImageToVideo.get("/download-video", async (req, res) => {
-  const {generated_ID} = req.query;
-console.log(req.query.id);
+  const { uuid } = req.query;
+
+  if (!uuid) {
+    return res.status(400).json({ error: "UUID is required to check status." });
+  }
   try {
     const response = await axios.get(
-      `https://api.aimlapi.com/v2/generate/video/runway/generation?generation_id=${generated_ID}`,
+      `https://api.aivideoapi.com/status/?uuid=${uuid}`,
       {
         headers: {
           Authorization: `Bearer ${API_KEY}`,
+          
         },
-        // params: {
-        //   generation_id: generated_ID,
-        // },
       }
     );
-    res.status(200).json({message: "Video generated successfully",data:response.data});
-  } catch (error) {
-    console.error(error?.response?.data || error?.message);
-    res.status(500).json("failed to generate the video");
+
+    res.json(response.data);
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    res.status(500).json({ error: "Status check failed" });
   }
 });
