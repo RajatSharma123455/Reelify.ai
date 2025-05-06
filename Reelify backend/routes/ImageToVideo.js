@@ -23,8 +23,9 @@ ImageToVideo.post("/image-to-video", async (req, res) => {
   if (!img_prompt) {
     return res.status(400).json({ error: "Missing imageUrl" });
   }
-
+  
   try {
+
     const response = await axios.post(
       "https://api.aivideoapi.com/runway/generate/image",
       {
@@ -44,19 +45,22 @@ ImageToVideo.post("/image-to-video", async (req, res) => {
         }
       }
     );
+ 
 
     res.json(response.data);
+
   } catch (err) {
     console.error(err.response?.data || err.message);
-    res.status(500).json({ error: "Video generation failed" });
+    res.status(500).json({ error: "Your free trial exhausted." });
   }
 });
 
 ImageToVideo.get("/download-video", async (req, res) => {
   const { uuid } = req.query;
+  
 
   if (!uuid) {
-    return res.status(400).json({ error: "UUID is required to check status." });
+    return res.status(400).json({ error: "UUID is required to check status" });
   }
   try {
     const response = await axios.get(
@@ -70,6 +74,7 @@ ImageToVideo.get("/download-video", async (req, res) => {
     );
 
     res.json(response.data);
+
   } catch (err) {
     console.error(err.response?.data || err.message);
     res.status(500).json({ error: "Status check failed" });

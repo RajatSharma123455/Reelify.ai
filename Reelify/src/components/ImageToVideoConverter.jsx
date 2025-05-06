@@ -36,17 +36,17 @@ const ImageToVideoApp = () => {
 
     try {
       const base64Image = await convertToBase64(imageFile);
-
-      const postRes = await axios.post("http://localhost:3000/image-to-video", {
+     console.log("enter try")
+      const postRes = await axios.post(`${import.meta.env.VITE_API_URL}/image-to-video`, {
         img_prompt: base64Image,
       });
-
+    console.log("postrespnse", postRes)
       const uuid = postRes.data.uuid;
 
       const interval = setInterval(async () => {
         try {
           const getRes = await axios.get(
-            "http://localhost:3000/download-video",
+            `${import.meta.env.VITE_API_URL}/download-video`,
             {
               params: { uuid },
             }
@@ -73,7 +73,10 @@ const ImageToVideoApp = () => {
         }
       }, 5000);
     } catch (error) {
-      toast.error(error.message);
+      console.log(error)
+      if(error.status === 500){
+      toast.error(error.response.data.error);
+      }
       setLoading(false);
       setVideoLoader(false);
     }

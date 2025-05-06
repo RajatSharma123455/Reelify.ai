@@ -46,7 +46,7 @@ box-shadow: 4px 3px 10px black;
 
 }
 .button-converter{
-    height:40%;
+    height:3rem;
     width:40%;
     font-size: medium;
     border-radius: 10px;
@@ -61,3 +61,5 @@ box-shadow: 4px 3px 10px black;
     cursor: pointer;
     transition: 0.3s ease-out;
 }
+
+
