@@ -68,89 +68,53 @@ MongoDB running locally or remotely (e.g., MongoDB Atlas)
 .env file with necessary keys
 
 ### 1. Clone the Repository
-bash
-Copy
-Edit
-git clone 
-cd <your-repo-directory>
-2. Install Dependencies
-Navigate to the project folder and install the required dependencies.
+git clone https://github.com/RajatSharma123455/Reelify.ai.git
 
-Backend:
+1. Backend:
 In the backend folder, run:
-
-bash
-Copy
-Edit
 npm install
-Frontend:
+
+2. Frontend:
 In the frontend folder (React app), run:
-
-bash
-Copy
-Edit
 npm install
+
 3. Set Up Environment Variables
-In the root of the project, create a .env file with the following content:
+   
+4. In the of the project, create a .env file with the following content:
 
-bash
-Copy
-Edit
-# .env (root directory)
-MONGO_URL=<your-mongodb-url>
+#### .env (root directory)
 API_KEYS=<your-api-key-for-aivideoapi.com>
-PORT=3000
-Make sure you replace <your-mongodb-url> and <your-api-key-for-aivideoapi.com> with the actual MongoDB URL and API key.
 
-4. Start the Backend Server
+PORT=3000
+
+5. Start the Backend Server
+   
 Navigate to the backend directory and start the server:
 
-bash
-Copy
-Edit
-cd backend
+cd Reelify backend
+
 npm run start
+
 This will run the backend on http://localhost:3000.
 
-5. Start the Frontend React App
+6. Start the Frontend React App
+   
 Navigate to the frontend directory and start the React development server:
 
-bash
-Copy
-Edit
-cd frontend
+cd Reelify
+
 npm run start
-This will start the frontend app on http://localhost:3001.
 
-6. Testing the Application
-Open the React frontend in your browser (http://localhost:3001).
+This will start the frontend app on http://localhost:5173.
 
-Upload an image and provide a scene description.
+7. Testing the Application
+ 
+Open the React frontend in your browser (http://localhost:5173).
 
-The backend will start the image-to-video generation process, and the status will be updated regularly.
+- Upload an image from device and click on convert to video
 
-Once the video is ready, it will be shown on the frontend.
+- The backend will start the image-to-video generation process, and the status will be updated regularly.
 
-7. MongoDB Integration
-When a request is made to generate a video, the backend saves the video task details, including the img_prompt (base64 image), uuid (external task ID), and the videoUrl in MongoDB. The database stores information about the task so that it can be queried later for status checks.
+- Once the video is ready, it will be shown on the frontend.
 
-8. Folder Structure
-The project folder structure is as follows:
 
-bash
-Copy
-Edit
-/backend
-  ├── models
-  │   └── VideoTask.js      # MongoDB Schema for storing video task information
-  ├── routes
-  │   └── ImageToVideo.js   # API route for handling image-to-video requests
-  ├── index.js              # Entry point for the backend server
-/frontend
-  ├── src
-  │   ├── components
-  │   │   └── ImageToVideoApp.js  # React component for frontend UI
-  │   └── App.js                  # Main React App file
-  ├── package.json           # Frontend dependencies
-  └── public
-      └── index.html        # HTML file for frontend app
