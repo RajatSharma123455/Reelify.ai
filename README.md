@@ -41,7 +41,7 @@ High-quality video generation: The gen4 model produces realistic and visually ap
 
 - The frontend polls the backend at regular intervals to check if the video has been generated.
 
-- Once the video is ready, it is displayed on the frontend using a <video> element.
+- Once the video is ready, it is displayed on the frontend using HTML video tag.
 
 ## Limitations:
 
