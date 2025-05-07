@@ -7,11 +7,12 @@
   .app-wrapper {
     display: flex;
     overflow: hidden;
+    height: 100%;
   }
   
   .sidebar {
     width: 35%;
-    background-color: #0D1117;
+    background-color: #1b193c;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -141,7 +142,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #0D1117;
+    background-color: #1b193c;
   }
   
   .video-wrapper {
