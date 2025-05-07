@@ -21,7 +21,7 @@ High-quality video generation: The gen4 model produces realistic and visually ap
 ## How the Pipeline Works
 ### Frontend (React App):
 
-- User uploads an image: A user selects an image file from their computer (Note- upload only 1280 X 720 px) otherwise it model cannot recognize the image because this model only works with lanscape(1280 x 720 px) or portait(720 x 1280).
+- User uploads an image: A user selects an image file from their device.
 
 - Image-to-Base64 conversion: The image is converted to a base64 string and sent to the backend.
 
