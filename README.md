@@ -11,19 +11,19 @@ High-quality video generation: The gen4 model produces realistic and visually ap
 
 - Flexible: It allows several configuration options (e.g., motion, seed) that can help tailor the video generation to meet different user needs.
 
-## How the Pipeline Works
-### Frontend (React App):
-
-- User uploads an image: A user selects an image file from their computer (Note- upload only 1280 X 720 px) otherwise it model cannot recognize the image because this model only works with lanscape(1280 x 720 px) or portait(720 x 1280).
-
-- Image-to-Base64 conversion: The image is converted to a base64 string and sent to the backend.
-
 ## Tech Stack
 - **Frontend**: React.js
 - **Backend**: Node.js/Express
 - **AI Service**: AIMLAPI.com (Runway Gen4 Turbo)
 - **Database**: MongoDB Atlas
 - **Hosting**: Render
+
+## How the Pipeline Works
+### Frontend (React App):
+
+- User uploads an image: A user selects an image file from their computer (Note- upload only 1280 X 720 px) otherwise it model cannot recognize the image because this model only works with lanscape(1280 x 720 px) or portait(720 x 1280).
+
+- Image-to-Base64 conversion: The image is converted to a base64 string and sent to the backend.
 
 ### Backend (Express Server):
 
