@@ -1,7 +1,7 @@
 # Project Title
 This project uses AI-based image-to-video conversion to generate videos based on a user's uploaded image and their desired video scene idea. The process leverages the aivideoapi.com API, utilizing a pre-trained AI model (gen4 model) to convert images to videos.
 
-## AI Model: gen4 (aivideoapi.com)
+## AI Model: gen4 (aimlapi.com)
 The AI model chosen for this project is the gen4 model from aivideoapi.com. This model specializes in generating video content from a single image.
 
 ### Why the gen4 Model?
@@ -18,17 +18,24 @@ High-quality video generation: The gen4 model produces realistic and visually ap
 
 - Image-to-Base64 conversion: The image is converted to a base64 string and sent to the backend.
 
+## Tech Stack
+- **Frontend**: React.js
+- **Backend**: Node.js/Express
+- **AI Service**: AIMLAPI.com (Runway Gen4 Turbo)
+- **Database**: MongoDB Atlas
+- **Hosting**: Render
+
 ### Backend (Express Server):
 
 - The backend receives the base64 image via a POST request.
 
-- A UUID is generated to track the task in the queue.
+- A UUID is generated to track the task in the queue and gets stored in DB with respective image url.
 
 - The backend makes an GET API request to aivideoapi.com to trigger the video generation.
 
-- The backend periodically checks the status of the video generation using the UUID.
+- Via polling the backend periodically checks the status of the video generation using the UUID.
 
-- Once the status is successful, the video URL is returned to the frontend.
+- Once the status is successful, the video URL is returned to the frontend and gets stored in DB against the respective image URL & UUID.
 
 #### Frontend (React):
 
@@ -38,9 +45,9 @@ High-quality video generation: The gen4 model produces realistic and visually ap
 
 ## Limitations:
 
-- The aivideoapi.com API might have rate limits, so I am only using free credits of it. Each account have free 5 API call credits for one time, due to which it could potentially lead to throttling or blocking or not able to download the image.
-
 - It may take a few minutes for the video to be generated, depending on server load.
+
+- Uploading large images may slightly delay base64 conversion and transfer.
 
 ### Image Quality:
 
@@ -114,5 +121,3 @@ Open the React frontend in your browser (http://localhost:5173).
 - The backend will start the image-to-video generation process, and the status will be updated regularly.
 
 - Once the video is ready, it will be shown on the frontend.
-
-

@@ -5,6 +5,7 @@ import { Video } from "../db/videoSchema.js";
 
 dotenv.config();
 
+// POST request for initiating video generation via image, text propmt, duration etc.
 export const ImageToVideo = express.Router();
 const API_KEY = process.env.API_KEYS;
 
@@ -42,22 +43,25 @@ ImageToVideo.post("/image-to-video", async (req, res) => {
         }
       }
     );
-    await Video.create({
-      image_url,
-      gen_id:response.data?.id,
-    });
+
+    // Storing data in MongoDB after POST request hits
+    if(response.data!=null){
+      await Video.create({
+        image_url,
+        gen_id:response.data?.id,
+      });
+    }
 
     res.json(response.data);
 
   } catch (err) {
-    console.error("API Error:", err.response?.data || err.message || err);
-
     const message = err.response?.data?.error || err.message || "Something went wrong.";
      res.status(400).json({ error: message });
   }
 
 });
 
+// API for getting status of queued video generation request
 ImageToVideo.get("/download-video", async (req, res) => {
   const { id } = req.query;
   console.log("query",id)
@@ -75,9 +79,9 @@ ImageToVideo.get("/download-video", async (req, res) => {
         },
       }
     );
-console.log("responsn data----", response.data )
     const videoUrl = response.data?.video;
 
+    // Storing video URL in MongoDB
     if (videoUrl) {
       await Video.findOneAndUpdate(
         { gen_id: id},
