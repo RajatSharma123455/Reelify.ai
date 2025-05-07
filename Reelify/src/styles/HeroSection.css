@@ -20,10 +20,12 @@ padding:0 2rem;
 
 }
 .homepage-introtext{
-    width:55%;
+    width:65%;
     display:flex;
     flex-direction: column; 
-    gap:10px;
+    justify-content: center;
+    gap:1rem;
+    
    
 }
 .title{
@@ -34,15 +36,15 @@ padding:0 2rem;
 .introduction{
       font-size: x-large;
        word-spacing: 4px;
-       padding:0 3rem;
+       padding:3rem 3rem;
        margin:0;
+     
 }
 .banner-image{
 height:100%;
 width:50%;
 border-radius: 8px;
 box-shadow: 4px 3px 10px black;
-
 
 }
 .button-converter{
@@ -52,8 +54,10 @@ box-shadow: 4px 3px 10px black;
     border-radius: 10px;
     background-color: #FFB52E;
     border:none;
-    margin: 2rem;
+    margin-left:2rem;
+    margin-top:1rem;
     box-shadow: 2px 2px 8px black;
+    
 }
 .button-converter:hover{
     background-color: white;
