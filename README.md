@@ -1,7 +1,7 @@
 # Project Title
 This project uses AI-based image-to-video conversion to generate videos based on a user's uploaded image and their desired video scene idea. The process leverages the aivideoapi.com API, utilizing a pre-trained AI model (gen4 model) to convert images to videos.
 
-## AI Model: Runway gen4 Turbo (aimlapi.com)
+## AI Model: Runway Gen4 Turbo (aimlapi.com)
 The AI model chosen for this project is the gen4 model from aivideoapi.com. This model specializes in generating video content from a single image.
 
 ### Why the gen4 Model?
