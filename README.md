@@ -1,5 +1,5 @@
 # Project Title
-This project uses AI-based image-to-video conversion to generate videos based on a user's uploaded image and their desired video scene idea. The process leverages the aivideoapi.com API, utilizing a pre-trained AI model (e.g., gen4 model) to convert images to videos.
+This project uses AI-based image-to-video conversion to generate videos based on a user's uploaded image and their desired video scene idea. The process leverages the aivideoapi.com API, utilizing a pre-trained AI model (gen4 model) to convert images to videos.
 
 ## AI Model: gen4 (aivideoapi.com)
 The AI model chosen for this project is the gen4 model from aivideoapi.com. This model specializes in generating video content from a single image.
@@ -62,8 +62,6 @@ High-quality video generation: The gen4 model produces realistic and visually ap
  ### Prerequisites
  
 Node.js (v14 or later)
-
-MongoDB running locally or remotely (e.g., MongoDB Atlas)
 
 .env file with necessary keys
 
